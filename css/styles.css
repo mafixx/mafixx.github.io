@@ -9,17 +9,18 @@
 /* Variables */
 
 :root {
-    --main-color: #FF714B; 
+    --main-color: #E86860; 
     --main-text-color: #ffffff;
-    --border-color: #05C2C2;
-    --bio-bg-color: #2D6067;
-    --bio-border-color: #05C2C2;
-    --about-bg-color: #264456;
+    --border-color: #61FFF4;
+    --bio-bg-color: #3A5C6B;
+    --bio-border-color: #61FFF4;
+    --about-bg-color: #284047;
 }
 
 /* General */
 .highlight {
     color: var(--main-color);
+    font-weight: bold;
 }
 
 /* Container */
@@ -45,13 +46,23 @@
     padding: 50px;
 }
 
+#about-container h1{
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+#about-container a{
+    text-decoration: none;
+}
+
 /* Bio container */
+
 #bio-container h2 {
     margin-bottom: 25px;
 }
 
 #bio-container p{
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 #bio-container #welcome-text{
@@ -82,6 +93,32 @@
 #social-container li a{
     color: var(--main-color);
     font-size: 30px;
+}
+
+#zap-container {
+    display: flex;
+    justify-content: center;
+}
+#zap-container ion-icon,
+#zap-container a {
+    flex: 1 1 1;
+}
+
+#zap-container a{
+    color: var(--main-text-color);
+    text-decoration: none;
+    max-width: 225px;
+}
+
+#zap-container ion-icon {
+    color: var(--main-color);
+    font-size: 20px;
+    margin-right: 5px;
+    max-width: 20px;
+}
+
+ion-icon[name="send-outline"] {
+    transform: rotate(-45deg);
 }
 
 #email-container {
@@ -161,6 +198,8 @@
     font: 32px;
 }
 
+
+
 #skills-container {
     display: flex;
     flex-wrap: wrap;
@@ -184,6 +223,11 @@
 .skills-box i {
     font-size: 45px;
     margin-right: 10px;
+}
+
+.skills-box img {
+    width: 51px;
+    height: 43px; 
 }
 
 /* Mobile */

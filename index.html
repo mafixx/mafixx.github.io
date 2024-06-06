@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portifolio Pedro Barbieri</title>
     <!--Welcome-->
-    <script>window.alert('Bem vindo ao meu Portifolio!')</script>
+    <!-- <script>window.alert('Bem vindo ao meu Portifolio!')</script> -->
     <!--Icon Page-->
     <link rel="icon" type="image/png" sizes="32x32" href="icon/monitor.svg">
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" rel="stylesheet"/>
     <!--Dev Icon Fonts-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!--Font Awesome Icons-->
+    <script src="https://kit.fontawesome.com/cc0e985816.js" crossorigin="anonymous"></script>
     <!--CSS do Projeto-->
     <link rel="stylesheet" href="css/styles.css" />
     <!--Animated CSS-->
@@ -23,7 +25,7 @@
         <aside id="bio-container">
             <h2 class="animate__animated animate__backInDown">Pedro Barbieri</h2>
             <p class="animate__animated animate__flash"></a><img id="bio-image" loading="lazy" src="img/pedrofuturista.png" title="System Analist and Developer" alt="Pedro Barbieri"></p>
-            <p>Olá, meu nome é Pedro Barbieri e sou <span class="highlight">Analista e Desenvolvedor de Sistemas</span>.</p>
+            <p><span class="highlight">Analista e Desenvolvedor de Sistemas</span></p>
             <p id="welcome-text">Seja bem-vindo!</p>
             <ul id="social-container">
                 <li><a href="https://www.linkedin.com/in/pedrobarbieri/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
@@ -33,54 +35,62 @@
             <div id="email-container">
                 <ion-icon name="mail-outline"></ion-icon><a href="mailto:pedro.romaguera@hotmail.com">pedro.romaguera@hotmail.com</a>
             </div>
+            <p></p>
+            <div id="zap-container">
+                <ion-icon name="logo-whatsapp"></ion-icon><ion-icon name="send-outline"></ion-icon><a href="https://wa.me/+5547988192464">Contato</a>
+            </div>
+            <p></p>
         </aside>
         <section id="about-container">
             <h1 id="name" class="animate__animated animate__backInLeft">Pedro Barbieri</h1>
-            <p id="title"><span class="highlight">Analista e Desenvolvedor de Sistemas</span></p>
-            <p class="description">Sou desenvolvedor com experiência adquirida pela <span class="highlight">Proway</span>, no curso de Full-Stack Python e estagiando pela <span class="highlight">Compass Uol</span>, atualmente sigo bacharelando em Análise e Desenvolvimento de Sistemas pela Unicesumar.</p>
-            <p class="description">Gosto tanto do <span class="highlight">front-end</span> quanto do lado <span class="highlight">back-end</span>. Curto demais tecnologia e em especial <span class="highlight">Inteligência Artificial e novos Sistemas Operacionais</span>. Procuro sempre me antenar sobre as novidades para que possa estar o mais atualizado possível.</p>
+            <p id="title"><span class="highlight">Analista de Dados e Desenvolvedor de Sistemas</span></p>
+            <p class="description">Sou desenvolvedor com experiência adquirida pela <a href="https://www.proway.com.br" target="_blank"><span class="highlight">Proway</a></span>, no curso de Full-Stack Python e participei do programa de bolsas ofertado pela <a href="https://compass.uol" target="_blank"><span class="highlight">Compass Uol</span></a>, formado em Análise e Desenvolvimento de Sistemas pela <a href="https://unicesumar.com.br" target="_blank"><span class="highlight">Unicesumar</a></span>.</p>
+            <p class="description">Gosto tanto do <span class="highlight">front-end</span> quanto do <span class="highlight">back-end</span>. Curto demais tecnologia e em especial <span class="highlight">Inteligência Artificial e novos Sistemas Operacionais</span>. Procuro sempre me antenar sobre as novidades para que possa estar o mais atualizado possível.</p>
             <a href="https://biolinky.co/mafixx/" id="btn-projects"><ion-icon name="share-social-outline"></ion-icon><span>Ver Projetos</span></a>
             <h2 id="skills-section-title">Minhas Skills</h2>
             <p class="description">Conheça as tecnologias que domino:</p>
             <div id="skills-container">
                 <div class="skills-box">
                     <p class="skills-title">Front-End</p>
-                    <i class="devicon-html5-plain colored"></i>
-                    <i class="devicon-css3-plain colored"></i>
-                    <i class="devicon-javascript-plain colored"></i>
+                    <i class="devicon-html5-plain colored" title="HTML"></i>
+                    <i class="devicon-css3-plain colored" title="CSS"></i>
+                    <i class="devicon-javascript-plain colored" title="Javascript"></i>
                 </div>
                 <div class="skills-box">
                     <p class="skills-title">Back-End</p>
-                    <i class="devicon-python-plain colored"></i>
-                    <i class="devicon-nodejs-plain colored"></i>
-                    <i class="devicon-java-plain colored"></i>
+                    <i class="devicon-python-plain colored" title="Python"></i>
+                    <i class="devicon-nodejs-plain colored" title="Node"></i>
+                    <i class="devicon-java-plain colored" title="Java"></i>
                 </div>
                 <div class="skills-box">
                     <p class="skills-title">Databases</p>
-                    <i class="devicon-mysql-plain colored"></i>
-                    <i class="devicon-postgresql-plain colored"></i>
-                    <i class="devicon-sqlite-plain colored"></i>
+                    <img title="Dbeaver" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dbeaver/dbeaver-original.svg" >         
+                    <i class="devicon-mysql-plain colored" title="MySQL"></i>
+                    <i class="devicon-postgresql-plain colored" title="PostgresSQL"></i>
+                    <i class="devicon-sqlite-plain colored" title="SQLite"></i>
                 </div>
                 <div class="skills-box">
                     <p class="skills-title">Front-End Frameworks</p>
-                    <i class="devicon-angularjs-plain colored"></i>
-                    <i class="devicon-react-plain colored"></i>
-                    <i class="devicon-sass-plain colored"></i>
+                    <i class="devicon-angularjs-plain colored" title="Angular"></i>
+                    <i class="devicon-react-plain colored" title="React"></i>
+                    <i class="devicon-sass-plain colored" title="Sass"></i>
                 </div>
                 <div class="skills-box">
                     <p class="skills-title">Back-End Frameworks</p>
-                    <i class="devicon-django-plain-wordmark colored"></i>
-                    <i class="devicon-express-original"></i> 
+                    <i class="devicon-django-plain-wordmark colored" title="Django"></i>
+                    <i class="devicon-express-original" title="Express"></i> 
                 </div>
                 <div class="skills-box">
                     <p class="skills-title">Tools</p>
-                    <i class="devicon-linux-plain colored"></i>
-                    <i class="devicon-windows8-plain colored"></i>
-                    <i class="devicon-git-plain colored"></i>
-                    <i class="devicon-docker-plain colored"></i>
-                    <i class="devicon-github-plain colored"></i>
-                    <i class="devicon-androidstudio-plain colored"></i>
-                    <i class="devicon-amazonwebservices-original"></i>
+                    <img title="Linux" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" />
+                    <img title="Windows" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg" />
+                    <img title="Git" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg" />
+                    <img title="VScode" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" />          
+                    <img title="Eclipse" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eclipse/eclipse-original.svg" />
+                    <img title="Docker" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" />
+                    <img title="GitHub" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
+                    <img title="Android Studio" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg" />
+                    <img title="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
                 </div>
             </div>
         </section>
