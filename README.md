@@ -1,86 +1,41 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Resume of Pedro Barbieri" />
+# Pedro Barbieri – Data Engineering Portfolio
 
-  &#xa0;
+Personal portfolio hosted on GitHub Pages.
 
-  <!-- <a href="https://mafixxgithubio.netlify.app">Demo</a> -->
-</div>
+## About
 
-<h1 align="center">Meu Portifólio</h1>
+This website presents my work and projects related to data engineering, data pipelines and data platforms.
 
-<!-- <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8">
+My focus is building reliable data systems using Python, SQL and modern data architectures.
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8">
+## Main Skills
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8">
+* Python
+* SQL
+* Data Pipelines
+* Data Modeling
+* Databricks
+* Airflow
+* Data Architecture
 
-  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8"> -->
+## Projects
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8" /> -->
+### Healthcare Data Pipeline
 
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8" /> -->
+Synthetic healthcare pipeline using Medallion Architecture.
 
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/mafixx-github-io?color=56BEB8" /> -->
-<!-- </p> -->
+### Flight Price Monitor
 
-<!-- Status -->
+Automation script to monitor flight prices.
 
-<h4 align="center"> 
-	🚧  Mafixx Github Io 🚀 Under construction...  🚧
-</h4> 
+### MafixxMoney
 
-<hr>
+Application for real-time USD exchange rate monitoring.
 
-<p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/mafixx" target="_blank">Author</a>
-</p>
+## Website
 
-<br>
+https://mafixx.github.io
 
-## :dart: About ##
+## Author
 
-My resume
-
-## :rocket: Technologies ##
-
-The following tools were used in this project:
-
-- [Html](https://www.w3schools.com/html/)
-- [CSS](https://www.w3schools.com/css/)
-- [Javascript](https://www.w3schools.com/js/)
-
-## :checkered_flag: Starting ##
-
-```bash
-# Clone this project
-$ git clone https://github.com/mafixx/mafixx-github-io
-
-# Access
-$ cd mafixx-github-io
-
-# Install dependencies
-$ yarn
-
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
-```
-
-## :memo: License ##
-
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
-
-
-Made with :heart: by <a href="https://github.com/mafixx" target="_blank">mafixx</a>
-
-&#xa0;
-
-<a href="#top">Back to top</a>
+Pedro Barbieri
