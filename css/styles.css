@@ -1,13 +1,9 @@
-/* RESET */
-
 *{
 padding:0;
 margin:0;
 font-family:Roboto, sans-serif;
 box-sizing:border-box;
 }
-
-/* VARIABLES */
 
 :root{
 --main-color:#00c2a8;
@@ -16,8 +12,6 @@ box-sizing:border-box;
 --bio-bg-color:#1f2a30;
 --about-bg-color:#162026;
 }
-
-/* GENERAL */
 
 .highlight{
 color:var(--main-color);
@@ -29,7 +23,7 @@ display:flex;
 color:var(--main-text-color);
 }
 
-/* LEFT SIDE */
+/* LEFT PANEL */
 
 #bio-container{
 flex:1 1 25%;
@@ -70,7 +64,9 @@ margin:0 10px;
 #social-container a{
 font-size:28px;
 color:var(--main-color);
-text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
 transition:.3s;
 }
 
@@ -78,7 +74,7 @@ transition:.3s;
 opacity:.7;
 }
 
-/* EMAIL ICON */
+/* EMAIL */
 
 #email-container{
 display:flex;
@@ -105,7 +101,7 @@ opacity:.7;
 font-size:28px;
 }
 
-/* RIGHT SIDE */
+/* RIGHT PANEL */
 
 #about-container{
 flex:1 1 75%;
@@ -178,14 +174,24 @@ border-left:4px solid var(--main-color);
 padding-left:10px;
 }
 
+.skills-box .icons-row{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+gap:12px;
+}
+
 .skills-box i{
 font-size:40px;
-margin-right:10px;
+display:flex;
+align-items:center;
+line-height:1;
 }
 
 .skills-box img{
 width:40px;
-margin-right:10px;
+height:40px;
+display:block;
 }
 
 /* PROJECTS */
