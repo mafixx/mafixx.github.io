@@ -1,178 +1,819 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Pedro Barbieri | Data Engineer</title>
-
-<link rel="icon" type="image/png" sizes="32x32" href="icon/data.svg">
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-
-<link rel="stylesheet" href="css/styles.css">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* Ícones do simple-icons chegam em preto — filtramos para a cor certa */
-  .si-airflow  { filter: invert(55%) sepia(98%) saturate(400%) hue-rotate(140deg) brightness(95%) contrast(101%); }
-  .si-dbt      { filter: invert(52%) sepia(60%) saturate(700%) hue-rotate(330deg) brightness(100%) contrast(105%); }
-  .si-databricks { filter: invert(35%) sepia(90%) saturate(800%) hue-rotate(350deg) brightness(105%) contrast(110%); }
-  .si-powerbi  { filter: invert(80%) sepia(50%) saturate(600%) hue-rotate(10deg) brightness(105%) contrast(100%); }
-  .si-sharepoint { filter: invert(32%) sepia(80%) saturate(600%) hue-rotate(190deg) brightness(95%) contrast(105%); }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .skills-box img {
-    width: 40px;
-    height: 40px;
-    margin-right: 12px;
-    margin-bottom: 10px;
-    vertical-align: middle;
-  }
+:root {
+  --teal: #00c2a8;
+  --teal-dim: rgba(0,194,168,0.12);
+  --teal-glow: rgba(0,194,168,0.25);
+  --bg: #0d1518;
+  --bg2: #111c20;
+  --bg3: #162026;
+  --text: #e8f0f2;
+  --muted: #7a9aa4;
+  --border: rgba(0,194,168,0.2);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: rgba(13,21,24,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--teal);
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  padding: 9px 22px;
+  border: 1px solid var(--teal);
+  border-radius: 6px;
+  color: var(--teal) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--teal) !important;
+  color: var(--bg) !important;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 60px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* grid background */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* glow orb */
+#hero::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  top: 50%; left: 55%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text { flex: 1; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--teal-dim);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--teal);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.1s forwards;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--teal);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s forwards;
+}
+
+.hero-name span {
+  color: var(--teal);
+  position: relative;
+}
+
+.hero-name span::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+  opacity: 0.4;
+  border-radius: 2px;
+}
+
+.hero-title {
+  font-size: 18px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.3s forwards;
+}
+
+.hero-title strong { color: var(--text); font-weight: 500; }
+
+.hero-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s forwards;
+}
+
+.hero-desc strong { color: var(--teal); font-weight: 500; }
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--teal);
+  color: var(--bg);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--teal);
+  background: var(--teal-dim);
+  transform: translateY(-2px);
+}
+
+/* hero image */
+.hero-image-wrap {
+  flex-shrink: 0;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1s 0.5s forwards;
+}
+
+.hero-image-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  animation: spinSlow 12s linear infinite;
+}
+
+.hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0,194,168,0.15);
+  animation: spinSlow 20s linear infinite reverse;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-image-wrap img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--teal);
+  display: block;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 60px rgba(0,194,168,0.25);
+}
+
+/* social strip */
+.hero-social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeIn 0.8s 0.8s forwards;
+}
+
+.hero-social a {
+  color: var(--muted);
+  font-size: 22px;
+  display: flex;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.hero-social a:hover { color: var(--teal); transform: scale(1.2); }
+
+.hero-social::after {
+  content: '';
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 100px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 540px;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+/* divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 0 60px;
+}
+
+/* ── SKILLS SECTION ── */
+#skills { background: var(--bg2); max-width: 100%; }
+#skills > * { max-width: 1200px; margin-left: auto; margin-right: auto; }
+#skills-inner { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.skill-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+  border-color: var(--teal);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,194,168,0.1);
+}
+
+.skill-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.icons-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.icons-row i {
+  font-size: 38px;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.icons-row i:hover { transform: scale(1.15); }
+
+.icons-row img {
+  width: 38px;
+  height: 38px;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.icons-row img:hover { transform: scale(1.15); }
+
+/* icon filters */
+.si-airflow   { filter: invert(55%) sepia(98%) saturate(400%) hue-rotate(140deg) brightness(95%) contrast(101%); }
+.si-dbt       { filter: invert(52%) sepia(60%) saturate(700%) hue-rotate(330deg) brightness(100%) contrast(105%); }
+.si-databricks{ filter: invert(35%) sepia(90%) saturate(800%) hue-rotate(350deg) brightness(105%) contrast(110%); }
+.si-powerbi   { filter: invert(80%) sepia(50%) saturate(600%) hue-rotate(10deg) brightness(105%) contrast(100%); }
+.si-sharepoint{ filter: invert(32%) sepia(80%) saturate(600%) hue-rotate(190deg) brightness(95%) contrast(105%); }
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--teal), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover {
+  border-color: rgba(0,194,168,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px rgba(0,194,168,0.08);
+}
+
+.project-card:hover::before { opacity: 1; }
+
+.project-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--teal);
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+.project-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.project-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stack-tag {
+  padding: 4px 12px;
+  background: var(--teal-dim);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--bg2);
+  max-width: 100%;
+  padding: 0;
+}
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.contact-text .section-sub { margin-bottom: 0; }
+
+.contact-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.contact-link:hover {
+  border-color: var(--teal);
+  background: var(--teal-dim);
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+
+.contact-link ion-icon { font-size: 18px; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 28px 60px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer span { color: var(--teal); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+
+  #hero { padding: 100px 24px 60px; }
+  .hero-inner { flex-direction: column-reverse; gap: 40px; text-align: center; }
+  .hero-image-wrap img { width: 200px; height: 200px; }
+  .hero-buttons { justify-content: center; }
+  .hero-social { flex-direction: row; }
+  .hero-social::after { display: none; }
+
+  section { padding: 70px 24px; }
+  #skills-inner { padding: 70px 24px; }
+  .contact-inner { padding: 70px 24px; flex-direction: column; }
+  .divider { margin: 0 24px; }
+  footer { padding: 24px; }
+}
 </style>
-
 </head>
-
 <body>
 
-<main id="container">
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">PB.</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
 
-<aside id="bio-container">
+<!-- HERO -->
+<section id="hero" style="padding-top:120px; max-width:100%;">
+  <div class="hero-inner">
 
-<h2>Pedro Barbieri</h2>
+    <div class="hero-social">
+      <a href="https://www.linkedin.com/in/pedrobarbieri/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
+      <a href="https://github.com/mafixx/" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+      <a href="https://www.instagram.com/pedro.romaguera/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="mailto:pedro.romaguera@hotmail.com"><ion-icon name="mail-outline"></ion-icon></a>
+    </div>
 
-<img id="bio-image" src="img/pedrofuturista.png" alt="Pedro Barbieri">
+    <div class="hero-text">
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-name">Pedro<br><span>Barbieri</span></h1>
+      <p class="hero-title"><strong>Data Engineer</strong> · Python · SQL · Data Pipelines</p>
+      <p class="hero-desc">
+        Building reliable data pipelines and analytical platforms.
+        Experienced with <strong>Databricks, Airflow, dbt</strong> and modern data architectures.
+        Background in software development with a focus on scalable data systems.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://github.com/mafixx" target="_blank" class="btn-primary">
+          <ion-icon name="logo-github"></ion-icon> View GitHub
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <ion-icon name="mail-outline"></ion-icon> Get in touch
+        </a>
+      </div>
+    </div>
 
-<p><span class="highlight">Data Engineer</span></p>
+    <div class="hero-image-wrap">
+      <img src="img/pedrofuturista.png" alt="Pedro Barbieri">
+    </div>
 
-<p id="welcome-text">Welcome!</p>
-
-<ul id="social-container">
-
-<li>
-<a href="https://www.linkedin.com/in/pedrobarbieri/" target="_blank">
-<ion-icon name="logo-linkedin"></ion-icon>
-</a>
-</li>
-
-<li>
-<a href="https://github.com/mafixx/" target="_blank">
-<ion-icon name="logo-github"></ion-icon>
-</a>
-</li>
-
-<li>
-<a href="https://www.instagram.com/pedro.romaguera/" target="_blank">
-<ion-icon name="logo-instagram"></ion-icon>
-</a>
-</li>
-
-</ul>
-
-<div id="email-container">
-<a href="mailto:pedro.romaguera@hotmail.com" title="Send email">
-<ion-icon name="mail-outline"></ion-icon>
-</a>
-</div>
-
-</aside>
-
-<section id="about-container">
-
-<h1 id="name">Pedro Barbieri</h1>
-
-<p id="title">
-<span class="highlight">Data Engineer | Python • SQL • Data Pipelines</span>
-</p>
-
-<p class="description">
-Data Engineer focused on building reliable data pipelines and analytical data platforms.
-Experience working with <span class="highlight">Python, SQL, Databricks, Airflow and modern data architectures</span>.
-</p>
-
-<p class="description">
-Background in software development and data analysis, with strong interest in
-data platforms, automation and scalable data systems.
-</p>
-
-<a href="https://github.com/mafixx" id="btn-projects" target="_blank">
-<ion-icon name="logo-github"></ion-icon>
-<span>View GitHub</span>
-</a>
-
-<h2 id="skills-section-title">Technical Skills</h2>
-
-<div id="skills-container">
-
-<!-- DATA ENGINEERING -->
-<div class="skills-box">
-<p class="skills-title">Data Engineering</p>
-<div class="icons-row">
-  <i class="devicon-python-plain colored" title="Python"></i>
-  <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i>
-  <img class="si-airflow" title="Apache Airflow" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/apacheairflow.svg">
-  <img class="si-dbt" title="dbt" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/dbt.svg">
-</div>
-</div>
-
-<!-- CLOUD PLATFORMS -->
-<div class="skills-box">
-<p class="skills-title">Cloud Platforms</p>
-<div class="icons-row">
-  <i class="devicon-amazonwebservices-plain-wordmark colored" title="AWS"></i>
-  <img class="si-databricks" title="Databricks" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/databricks.svg">
-</div>
-</div>
-
-<!-- DATA VISUALIZATION -->
-<div class="skills-box">
-<p class="skills-title">Data Visualization</p>
-<div class="icons-row">
-  <img class="si-powerbi" title="Power BI" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/powerbi.svg">
-  <i class="devicon-amazonwebservices-plain colored" title="AWS QuickSight"></i>
-</div>
-</div>
-
-<!-- COLLABORATION & TOOLS -->
-<div class="skills-box">
-<p class="skills-title">Collaboration &amp; Tools</p>
-<div class="icons-row">
-  <i class="devicon-jira-plain colored" title="Jira"></i>
-  <i class="devicon-confluence-plain colored" title="Confluence"></i>
-  <img class="si-sharepoint" title="SharePoint" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftsharepoint.svg">
-</div>
-</div>
-
-</div>
-
-<h2 id="skills-section-title">Data Engineering Projects</h2>
-
-<div class="project-box">
-<h3>Healthcare Data Pipeline</h3>
-<p>Synthetic healthcare pipeline using Medallion Architecture (Bronze → Silver → Gold).</p>
-<p><strong>Stack:</strong> Python • Pandas • PostgreSQL</p>
-</div>
-
-<div class="project-box">
-<h3>Flight Price Monitor</h3>
-<p>Python automation to monitor flight prices and search travel deals.</p>
-<p><strong>Stack:</strong> Python • Requests • APIs</p>
-</div>
-
-<div class="project-box">
-<h3>MafixxMoney</h3>
-<p>Application to monitor USD exchange rates in real time.</p>
-<p><strong>Stack:</strong> Python • Financial APIs</p>
-</div>
-
+  </div>
 </section>
 
-</main>
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div id="skills-inner">
+    <div class="reveal">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-sub">Tools and technologies I use to build end-to-end data solutions.</p>
+    </div>
+
+    <div class="skills-grid reveal">
+
+      <div class="skill-card">
+        <p class="skill-card-title">Data Engineering</p>
+        <div class="icons-row">
+          <i class="devicon-python-plain colored" title="Python"></i>
+          <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i>
+          <img class="si-airflow" title="Apache Airflow" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/apacheairflow.svg">
+          <img class="si-dbt" title="dbt" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/dbt.svg">
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title">Cloud Platforms</p>
+        <div class="icons-row">
+          <i class="devicon-amazonwebservices-plain-wordmark colored" title="AWS"></i>
+          <img class="si-databricks" title="Databricks" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/databricks.svg">
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title">Data Visualization</p>
+        <div class="icons-row">
+          <img class="si-powerbi" title="Power BI" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/powerbi.svg">
+          <i class="devicon-amazonwebservices-plain colored" title="AWS QuickSight"></i>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title">Collaboration &amp; Tools</p>
+        <div class="icons-row">
+          <i class="devicon-jira-plain colored" title="Jira"></i>
+          <i class="devicon-confluence-plain colored" title="Confluence"></i>
+          <img class="si-sharepoint" title="SharePoint" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/microsoftsharepoint.svg">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-sub">A selection of data engineering projects built to solve real-world problems.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <p class="project-number">01</p>
+      <h3>Healthcare Data Pipeline</h3>
+      <p>Synthetic healthcare pipeline using Medallion Architecture (Bronze → Silver → Gold). End-to-end ingestion, transformation and serving layers.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.1s">
+      <p class="project-number">02</p>
+      <h3>Flight Price Monitor</h3>
+      <p>Python automation to monitor flight prices and surface travel deals in real time via API integrations and scheduled data extraction.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Requests</span>
+        <span class="stack-tag">APIs</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.2s">
+      <p class="project-number">03</p>
+      <h3>MafixxMoney</h3>
+      <p>Application to monitor USD exchange rates in real time, with automated data pulls from financial APIs and alert logic.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Financial APIs</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-text">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's work together</h2>
+      <p class="section-sub">Open to new opportunities, collaborations and interesting data challenges.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:pedro.romaguera@hotmail.com" class="contact-link">
+        <ion-icon name="mail-outline"></ion-icon> Email
+      </a>
+      <a href="https://www.linkedin.com/in/pedrobarbieri/" target="_blank" class="contact-link">
+        <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
+      </a>
+      <a href="https://github.com/mafixx/" target="_blank" class="contact-link">
+        <ion-icon name="logo-github"></ion-icon> GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Designed &amp; built by <span>Pedro Barbieri</span> · 2025
+</footer>
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-</body>
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
 </html>
